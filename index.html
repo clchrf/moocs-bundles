@@ -165,12 +165,12 @@ body{margin:0;background:var(--bg);color:var(--label);
 :root[data-theme="dark"] .lane-id{background:#2E5C8A;}
 .lane-nm{font-size:16px;font-weight:600;letter-spacing:-.01em;}
 .lane-meta{font-size:12.5px;color:var(--label2);}
-/* 手機:兩欄排列、完全不橫向捲動(先前逐列捲動會把方框從中間切斷) */
-.lane-track{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+/* 手機:單欄直向排列、完全不橫向捲動(先前橫排捲動會把方框從中間切斷) */
+.lane-track{display:grid;grid-template-columns:1fr;gap:6px;}
 .cell{display:flex;align-items:stretch;min-width:0;}
 .cell .node{flex:1 1 auto;min-width:0;}
-.node{border-radius:14px;padding:10px 11px;color:#fff;
-  font-size:13px;font-weight:600;line-height:1.42;display:flex;align-items:center;
+.node{border-radius:14px;padding:10px 12px;color:#fff;
+  font-size:13.5px;font-weight:600;line-height:1.42;display:flex;align-items:center;
   overflow-wrap:anywhere;
   box-shadow:0 1px 3px rgba(0,0,0,.10),0 1px 1px rgba(0,0,0,.04);}
 /* 步驟編號:手機沒有箭頭時仍看得出修課順序 */
@@ -182,8 +182,9 @@ body{margin:0;background:var(--bg);color:var(--label);
 @media (prefers-color-scheme:dark){.node.basic{background:#4E7BA8;}.node.adv{background:#1F3F63;}}
 :root[data-theme="dark"] .node.basic{background:#4E7BA8;}
 :root[data-theme="dark"] .node.adv{background:#1F3F63;}
-.arrow{display:none;}   /* 手機不顯示箭頭,改以方框內編號表示順序 */
-/* 桌機:改用等寬欄格線,不論容器多寬都不會溢出,且各列欄位互相對齊 */
+/* 手機為直向排列,不用橫向箭頭,改以方框內編號表示順序 */
+.arrow{display:none;}
+/* 桌機:恢復橫向排列,等寬欄格線,不論容器多寬都不會溢出,各列欄位互相對齊 */
 @media(min-width:760px){
   .lane-track{grid-template-columns:repeat(5,1fr);gap:0;}
   .cell{gap:4px;}
