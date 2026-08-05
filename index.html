@@ -21,6 +21,10 @@ body{margin:0;background:var(--bg);color:var(--label);
   --sep:rgba(60,60,67,.20); --blue:#007AFF; --navy:#1F3864;
   --green:#34C759; --orange:#FF9500; --fill:rgba(120,120,128,.12);
   --blur:saturate(180%) blur(20px); --headerbg:rgba(242,242,247,.82);
+  --lv1:#EDF2F9; --lv2:#7FA8D0; --lv3:#3D7CB4; --lv4:#2E5C8A; --lv5:#1F3864;
+  --onDeep:#FFFFFF; --chipBg:#EDF2F9; --chipFg:#2E5C8A;
+  --ndBasicBg:#7FA8D0; --ndBasicFg:#12233A; --ndBasicChip:rgba(18,35,58,.20);
+  --ndAdvBg:#2E5C8A; --ndAdvFg:#FFFFFF;
 }
 @media (prefers-color-scheme:dark){:root{
   --bg:#000000; --card:#1C1C1E; --card2:#2C2C2E;
@@ -28,6 +32,10 @@ body{margin:0;background:var(--bg);color:var(--label);
   --sep:rgba(84,84,88,.65); --blue:#0A84FF; --navy:#8FB0E0;
   --green:#30D158; --orange:#FF9F0A; --fill:rgba(120,120,128,.24);
   --headerbg:rgba(28,28,30,.78);
+  --lv1:#1A2331; --lv2:#4E7BA8; --lv3:#3D6E9E; --lv4:#2E5C8A; --lv5:#6D9BD4;
+  --onDeep:#0A111B; --chipBg:rgba(109,155,212,.20); --chipFg:#A8C7EA;
+  --ndBasicBg:#3E6A99; --ndBasicFg:#FFFFFF; --ndBasicChip:rgba(255,255,255,.26);
+  --ndAdvBg:#22405F; --ndAdvFg:#FFFFFF;
 }}
 :root[data-theme="dark"]{
   --bg:#000000; --card:#1C1C1E; --card2:#2C2C2E;
@@ -35,6 +43,10 @@ body{margin:0;background:var(--bg);color:var(--label);
   --sep:rgba(84,84,88,.65); --blue:#0A84FF; --navy:#8FB0E0;
   --green:#30D158; --orange:#FF9F0A; --fill:rgba(120,120,128,.24);
   --headerbg:rgba(28,28,30,.78);
+  --lv1:#1A2331; --lv2:#4E7BA8; --lv3:#3D6E9E; --lv4:#2E5C8A; --lv5:#6D9BD4;
+  --onDeep:#0A111B; --chipBg:rgba(109,155,212,.20); --chipFg:#A8C7EA;
+  --ndBasicBg:#3E6A99; --ndBasicFg:#FFFFFF; --ndBasicChip:rgba(255,255,255,.26);
+  --ndAdvBg:#22405F; --ndAdvFg:#FFFFFF;
 }
 :root[data-theme="light"]{
   --bg:#F2F2F7; --card:#FFFFFF; --card2:#F2F2F7;
@@ -42,6 +54,10 @@ body{margin:0;background:var(--bg);color:var(--label);
   --sep:rgba(60,60,67,.20); --blue:#007AFF; --navy:#1F3864;
   --green:#34C759; --orange:#FF9500; --fill:rgba(120,120,128,.12);
   --headerbg:rgba(242,242,247,.82);
+  --lv1:#EDF2F9; --lv2:#7FA8D0; --lv3:#3D7CB4; --lv4:#2E5C8A; --lv5:#1F3864;
+  --onDeep:#FFFFFF; --chipBg:#EDF2F9; --chipFg:#2E5C8A;
+  --ndBasicBg:#7FA8D0; --ndBasicFg:#12233A; --ndBasicChip:rgba(18,35,58,.20);
+  --ndAdvBg:#2E5C8A; --ndAdvFg:#FFFFFF;
 }
 .wrap{max-width:760px;margin:0 auto;padding:0 16px;}
 @media(min-width:900px){.wrap{max-width:980px;}}
@@ -98,9 +114,12 @@ body{margin:0;background:var(--bg);color:var(--label);
 .b-head{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;cursor:pointer;
   user-select:none;transition:background .15s ease;}
 .b-head:active{background:var(--fill);}
-.badge{flex:0 0 auto;width:38px;height:38px;border-radius:10px;background:var(--navy);
-  color:#fff;display:grid;place-items:center;font-size:14px;font-weight:700;letter-spacing:.01em;}
-@media (prefers-color-scheme:dark){.badge{background:#2E5C8A;}}
+.badge{flex:0 0 auto;width:38px;height:38px;border-radius:10px;background:var(--lv5);
+  color:var(--onDeep);display:grid;place-items:center;font-size:14px;font-weight:700;
+  letter-spacing:.01em;}
+:root[data-theme="dark"] .badge{flex:0 0 auto;width:38px;height:38px;border-radius:10px;background:var(--lv5);
+  color:var(--onDeep);display:grid;place-items:center;font-size:14px;font-weight:700;
+  letter-spacing:.01em;}
 .b-txt{flex:1;min-width:0;}
 .b-name{font-size:17px;font-weight:600;letter-spacing:-.01em;}
 .b-tag{font-size:13px;color:var(--label2);margin-top:2px;}
@@ -111,7 +130,8 @@ body{margin:0;background:var(--bg);color:var(--label);
 .chip{font-size:12px;color:var(--label2);background:var(--fill);
   border-radius:7px;padding:3px 8px;white-space:nowrap;}
 /* 代碼清單可能很長:獨占一行並允許換行,避免被卡片裁掉 */
-.chip.b{color:var(--blue);flex:1 1 100%;white-space:normal;word-break:break-word;line-height:1.55;}
+.chip.b{color:var(--label2);flex:1 1 100%;white-space:normal;word-break:break-word;
+  line-height:1.55;font-variant-numeric:tabular-nums;}
 .b-body{display:none;border-top:.5px solid var(--sep);padding:14px 16px 18px;}
 .bundle.open .b-body{display:block;}
 .kv{display:flex;gap:10px;font-size:14px;padding:6px 0;border-bottom:.5px solid var(--sep);}
@@ -125,21 +145,24 @@ body{margin:0;background:var(--bg);color:var(--label);
 .step{position:relative;padding:0 0 14px 38px;}
 .step:last-child{padding-bottom:0;}
 .step::before{content:attr(data-n);position:absolute;left:0;top:1px;width:24px;height:24px;
-  border-radius:50%;background:var(--blue);color:#fff;font-size:12px;font-weight:600;
+  border-radius:50%;background:var(--lv5);color:var(--onDeep);font-size:12px;font-weight:600;
   display:grid;place-items:center;}
 .step::after{content:"";position:absolute;left:11.5px;top:27px;bottom:4px;width:1.5px;
   background:var(--sep);}
 .step:last-child::after{display:none;}
 .s-name{font-size:15px;font-weight:600;line-height:1.35;}
 .s-meta{font-size:12.5px;color:var(--label2);margin-top:2px;}
-.s-code{font-size:12px;color:var(--blue);margin-top:3px;word-break:break-word;}
-.pill{display:inline-block;font-size:11px;border-radius:5px;padding:1px 6px;margin-left:6px;
-  vertical-align:1px;}
-.pill.basic{background:rgba(52,199,89,.15);color:var(--green);}
-.pill.ap{background:rgba(255,149,0,.16);color:var(--orange);font-weight:700;}
-.node .ap{flex:0 0 auto;margin-left:6px;font-size:10px;font-weight:700;
-  background:rgba(255,255,255,.28);border-radius:5px;padding:1px 5px;}
-.pill.adv{background:rgba(0,122,255,.15);color:var(--blue);}
+.s-code{font-size:12px;color:var(--label2);margin-top:3px;word-break:break-word;
+  font-variant-numeric:tabular-nums;}
+/* 分級標記一律使用同一藍色階,以深淺表示程度,避免多種色相並存。
+   深色模式的前景色由 --onDeep / --chipFg 代幣自動翻轉,不另寫覆寫規則。 */
+.pill{display:inline-block;font-size:11px;border-radius:5px;padding:1px 7px;margin-left:6px;
+  vertical-align:1px;font-weight:600;letter-spacing:.02em;}
+.pill.basic{background:var(--chipBg);color:var(--chipFg);}
+.pill.adv{background:var(--lv4);color:#fff;}
+.pill.ap{background:var(--lv5);color:var(--onDeep);}
+.node .ap{flex:0 0 auto;margin-left:6px;font-size:10px;font-weight:700;letter-spacing:.02em;
+  background:rgba(255,255,255,.26);border-radius:5px;padding:1px 5px;}
 
 /* ── 學習目標 ── */
 .goals{list-style:none;margin:0;padding:0;counter-reset:g;}
@@ -162,10 +185,10 @@ body{margin:0;background:var(--bg);color:var(--label);
 .lmap{display:flex;flex-direction:column;gap:10px;}
 .lane{background:var(--card);border-radius:16px;padding:13px 14px 11px;}
 .lane-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:11px;}
-.lane-id{flex:0 0 auto;font-size:12.5px;font-weight:700;color:#fff;background:var(--navy);
+.lane-id{flex:0 0 auto;font-size:12.5px;font-weight:700;color:var(--onDeep);background:var(--lv5);
   border-radius:7px;padding:2px 8px;letter-spacing:.02em;}
-@media (prefers-color-scheme:dark){.lane-id{background:#2E5C8A;}}
-:root[data-theme="dark"] .lane-id{background:#2E5C8A;}
+:root[data-theme="dark"] .lane-id{flex:0 0 auto;font-size:12.5px;font-weight:700;color:var(--onDeep);background:var(--lv5);
+  border-radius:7px;padding:2px 8px;letter-spacing:.02em;}
 .lane-nm{font-size:16px;font-weight:600;letter-spacing:-.01em;}
 .lane-meta{font-size:12.5px;color:var(--label2);}
 /* 手機:單欄直向排列、完全不橫向捲動(先前橫排捲動會把方框從中間切斷) */
@@ -180,11 +203,11 @@ body{margin:0;background:var(--bg);color:var(--label);
 .node .i{flex:0 0 19px;height:19px;border-radius:50%;background:rgba(255,255,255,.26);
   font-size:11px;font-weight:700;display:grid;place-items:center;margin-right:8px;
   font-variant-numeric:tabular-nums;}
-.node.basic{background:#7FA8D0;}
-.node.adv{background:#2E5C8A;}
-@media (prefers-color-scheme:dark){.node.basic{background:#4E7BA8;}.node.adv{background:#1F3F63;}}
-:root[data-theme="dark"] .node.basic{background:#4E7BA8;}
-:root[data-theme="dark"] .node.adv{background:#1F3F63;}
+/* 地圖節點:兩種主題各自取足夠對比的底色與字色,由代幣翻轉 */
+.node.basic{background:var(--ndBasicBg);color:var(--ndBasicFg);}
+.node.adv{background:var(--ndAdvBg);color:var(--ndAdvFg);}
+.node.basic .i,.node.basic .ap{background:var(--ndBasicChip);color:inherit;}
+.node.adv .i,.node.adv .ap{background:rgba(255,255,255,.26);color:inherit;}
 /* 手機為直向排列,不用橫向箭頭,改以方框內編號表示順序 */
 .arrow{display:none;}
 /* 桌機:恢復橫向排列,等寬欄格線,不論容器多寬都不會溢出,各列欄位互相對齊 */
@@ -202,6 +225,20 @@ body{margin:0;background:var(--bg);color:var(--label);
 .legend i{display:inline-block;width:22px;height:12px;border-radius:4px;
   margin-right:5px;vertical-align:-1px;}
 .hint{font-size:12px;color:var(--label3);margin:6px 4px 0;}
+
+/* ── A+ 錨點課程 ── */
+.aplist{list-style:none;margin:0;padding:0;}
+.aplist li{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;align-items:baseline;
+  padding:11px 16px;border-bottom:.5px solid var(--sep);}
+.aplist li:last-child{border-bottom:0;}
+.aplist .score{grid-row:1/3;align-self:center;min-width:46px;text-align:center;
+  background:var(--chipBg);color:var(--chipFg);border-radius:9px;padding:6px 4px;
+  font-size:15px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.15;}
+.aplist .score em{display:block;font-size:9.5px;font-weight:600;font-style:normal;
+  letter-spacing:.04em;opacity:.75;}
+.aplist .nm{grid-column:2;font-size:14.5px;font-weight:600;line-height:1.4;}
+.aplist .meta{grid-column:2;font-size:12px;color:var(--label2);}
+.aplist .meta b{color:var(--chipFg);font-weight:700;}
 
 /* ── 指標涵蓋 ──
    手機:代碼與組數同一行,細項名稱另起一行(避免名稱被擠成兩行)
@@ -418,14 +455,14 @@ body{margin:0;background:var(--bg);color:var(--label);
 <section class="sec" id="map">
 <div class="sec-h">視覺化學習地圖</div>
 <div class="lmap"><div class="lane"><div class="lane-h"><span class="lane-id">P1</span><span class="lane-nm">AI 素養入門包</span><span class="lane-meta">3 門 · 13 小時 · 通識／零基礎</span></div><div class="lane-track"><div class="cell"><div class="node basic"><b class="i">1</b><span>和AI做朋友：從0開始學AI</span><b class="ap">A+</b></div><span class="arrow" aria-hidden="true">›</span></div><div class="cell"><div class="node basic"><b class="i">2</b><span>AI智慧創新與應用</span></div><span class="arrow" aria-hidden="true">›</span></div><div class="cell"><div class="node basic"><b class="i">3</b><span>[資通安全]生成式AI對數位素養的挑戰</span></div><span class="arrow" aria-hidden="true">›</span></div></div></div><div class="lane"><div class="lane-h"><span class="lane-id">P2</span><span class="lane-nm">AI 職場、商業與決策包</span><span class="lane-meta">3 門 · 18 小時 · 商管／在職者</span></div><div class="lane-track"><div class="cell"><div class="node basic"><b class="i">1</b><span>當機器人來上班—未來職場的AI必修課</span></div><span class="arrow" aria-hidden="true">›</span></div><div class="cell"><div class="node basic"><b class="i">2</b><span>不動產金融與投資的人工智慧應用</span></div><span class="arrow" aria-hidden="true">›</span></div><div class="cell"><div class="node adv"><b class="i">3</b><span>The Behavioral Sciences in the Age of AI</span><b class="ap">A+</b></div><span class="arrow" aria-hidden="true">›</span></div></div></div><div class="lane"><div class="lane-h"><span class="lane-id">P3</span><span class="lane-nm">生成式 AI 與數位教學應用包</span><span class="lane-meta">4 門 · 19 小時 · 教師／教材製作</span></div><div class="lane-track"><div class="cell"><div class="node basic"><b class="i">1</b><span>和AI做朋友：從0開始學AI</span><b class="ap">A+</b></div><span class="arrow" aria-hidden="true">›</span></div><div class="cell"><div class="node basic"><b class="i">2</b><span>人工智慧在教育上的應用(北教大)</span></div><span class="arrow" aria-hidden="true">›</span></div><div class="cell"><div class="node basic"><b class="i">3</b><span>運用MOOCs、AI與設計思維打造數位微課程</span></div><span class="arrow" aria-hidden="true">›</span></div><div class="cell"><div class="node adv"><b class="i">4</b><span>生成式AI在教育上的應用課程</span></div><span class="arrow" aria-hidden="true">›</span></div></div></div><div class="lane"><div class="lane-h"><span class="lane-id">P4</span><span class="lane-nm">機器學習實作養成包</span><span class="lane-meta">4 門 · 25 小時 · 資訊理工／轉職</span></div><div class="lane-track"><div class="cell"><div class="node adv"><b class="i">1</b><span>應用機器學習於 Python</span><b class="ap">A+</b></div><span class="arrow" aria-hidden="true">›</span></div><div class="cell"><div class="node adv"><b class="i">2</b><span>機器學習基礎理論與實作</span></div><span class="arrow" aria-hidden="true">›</span></div><div class="cell"><div class="node adv"><b class="i">3</b><span>機器學習實作</span><b class="ap">A+</b></div><span class="arrow" aria-hidden="true">›</span></div><div class="cell"><div class="node adv"><b class="i">4</b><span>機器學習在資訊安全的運用</span></div><span class="arrow" aria-hidden="true">›</span></div></div></div><div class="lane"><div class="lane-h"><span class="lane-id">P5</span><span class="lane-nm">深度學習進階包</span><span class="lane-meta">5 門 · 33 小時 · 已具ML基礎</span></div><div class="lane-track"><div class="cell"><div class="node adv"><b class="i">1</b><span>深度學習的原理及實務上的應用</span><b class="ap">A+</b></div><span class="arrow" aria-hidden="true">›</span></div><div class="cell"><div class="node adv"><b class="i">2</b><span>人工智慧與深度學習</span><b class="ap">A+</b></div><span class="arrow" aria-hidden="true">›</span></div><div class="cell"><div class="node adv"><b class="i">3</b><span>深度學習實務應用</span></div><span class="arrow" aria-hidden="true">›</span></div><div class="cell"><div class="node adv"><b class="i">4</b><span>深度學習與工程應用</span></div><span class="arrow" aria-hidden="true">›</span></div><div class="cell"><div class="node adv"><b class="i">5</b><span>解密生成式AI:注意力機制與Transformer</span></div><span class="arrow" aria-hidden="true">›</span></div></div></div><div class="lane"><div class="lane-h"><span class="lane-id">P6</span><span class="lane-nm">智慧物聯與電腦視覺包</span><span class="lane-meta">3 門 · 20 小時 · 電機資工機械</span></div><div class="lane-track"><div class="cell"><div class="node adv"><b class="i">1</b><span>人工智慧與深度學習</span><b class="ap">A+</b></div><span class="arrow" aria-hidden="true">›</span></div><div class="cell"><div class="node adv"><b class="i">2</b><span>AIoT技術與應用</span><b class="ap">A+</b></div><span class="arrow" aria-hidden="true">›</span></div><div class="cell"><div class="node adv"><b class="i">3</b><span>邁向自動駕駛之AI物件偵測技術</span></div><span class="arrow" aria-hidden="true">›</span></div></div></div><div class="lane"><div class="lane-h"><span class="lane-id">P7</span><span class="lane-nm">類神經網路與深度學習理論包</span><span class="lane-meta">3 門 · 24 小時 · 研究所／理論</span></div><div class="lane-track"><div class="cell"><div class="node adv"><b class="i">1</b><span>深度學習的原理及實務上的應用</span><b class="ap">A+</b></div><span class="arrow" aria-hidden="true">›</span></div><div class="cell"><div class="node adv"><b class="i">2</b><span>深度類神經計算及應用</span></div><span class="arrow" aria-hidden="true">›</span></div><div class="cell"><div class="node adv"><b class="i">3</b><span>深度機器學習及應用</span></div><span class="arrow" aria-hidden="true">›</span></div></div></div><div class="lane"><div class="lane-h"><span class="lane-id">P8</span><span class="lane-nm">教育資料科學與學習分析包</span><span class="lane-meta">3 門 · 18 小時 · 教師／教育研究</span></div><div class="lane-track"><div class="cell"><div class="node basic"><b class="i">1</b><span>人工智慧在教育上的應用(亞洲大學)</span></div><span class="arrow" aria-hidden="true">›</span></div><div class="cell"><div class="node basic"><b class="i">2</b><span>教育資料探勘(高師大)</span><b class="ap">A+</b></div><span class="arrow" aria-hidden="true">›</span></div><div class="cell"><div class="node adv"><b class="i">3</b><span>資料科學與教育資料探勘</span><b class="ap">A+</b></div><span class="arrow" aria-hidden="true">›</span></div></div></div><div class="lane"><div class="lane-h"><span class="lane-id">P9</span><span class="lane-nm">醫療健康 AI 應用包</span><span class="lane-meta">3 門 · 29 小時 · 醫護生醫背景</span></div><div class="lane-track"><div class="cell"><div class="node basic"><b class="i">1</b><span>和AI做朋友：從0開始學AI</span><b class="ap">A+</b></div><span class="arrow" aria-hidden="true">›</span></div><div class="cell"><div class="node adv"><b class="i">2</b><span>人工智慧在肺部醫學之應用</span></div><span class="arrow" aria-hidden="true">›</span></div><div class="cell"><div class="node adv"><b class="i">3</b><span>人工智慧醫學影像處理</span></div><span class="arrow" aria-hidden="true">›</span></div></div></div></div>
-<div class="legend"><span><i style="background:#7FA8D0"></i>基礎</span>
-<span><i style="background:#2E5C8A"></i>進階</span></div>
+<div class="legend"><span><i style="background:var(--ndBasicBg)"></i>基礎</span>
+<span><i style="background:var(--ndAdvBg)"></i>進階</span></div>
 <p class="hint">方框內編號即建議修課順序(由淺入深),色塊深淺代表難易度。</p>
 </section>
 
 <section class="sec" id="aplus">
 <div class="sec-h">A+ 錨點課程（推薦均值 ≥ 4.33）</div>
-<div class="card"><ul class="cov"><li><span class="code">4.67</span><span class="nm">應用機器學習於 Python<br><span style="font-size:12px;color:var(--label3)">國立政治大學　·　進階　·　6 小時</span></span><span class="cnt">P4</span></li><li><span class="code">4.33</span><span class="nm">人工智慧與深度學習<br><span style="font-size:12px;color:var(--label3)">東海大學　·　進階　·　9 小時</span></span><span class="cnt">P5、P6</span></li><li><span class="code">4.33</span><span class="nm">AIoT技術與應用<br><span style="font-size:12px;color:var(--label3)">東海大學　·　進階　·　9 小時</span></span><span class="cnt">P6</span></li><li><span class="code">4.33</span><span class="nm">深度學習的原理及實務上的應用<br><span style="font-size:12px;color:var(--label3)">國立政治大學　·　進階　·　6 小時</span></span><span class="cnt">P5、P7</span></li><li><span class="code">4.33</span><span class="nm">和AI做朋友：從0開始學AI<br><span style="font-size:12px;color:var(--label3)">教育部AI人才培育計畫-中小學推廣教育計畫　·　基礎　·　6 小時</span></span><span class="cnt">P1、P3、P9</span></li><li><span class="code">4.33</span><span class="nm">The Behavioral Sciences in the Age of AI<br><span style="font-size:12px;color:var(--label3)">國立雲林科技大學　·　進階　·　8 小時</span></span><span class="cnt">P2</span></li><li><span class="code">4.33</span><span class="nm">資料科學與教育資料探勘<br><span style="font-size:12px;color:var(--label3)">東海大學　·　進階　·　6 小時</span></span><span class="cnt">P8</span></li><li><span class="code">4.33</span><span class="nm">教育資料探勘(高師大)<br><span style="font-size:12px;color:var(--label3)">國立高雄師範大學　·　基礎　·　6 小時</span></span><span class="cnt">P8</span></li><li><span class="code">4.33</span><span class="nm">機器學習實作<br><span style="font-size:12px;color:var(--label3)">國立中興大學　·　進階　·　6 小時</span></span><span class="cnt">P4</span></li></ul>
+<div class="card"><ul class="aplist"><li><span class="score">4.67<em>推薦</em></span><span class="nm">應用機器學習於 Python</span><span class="meta">國立政治大學　·　進階　·　6 小時　·　收錄於 <b>P4</b></span></li><li><span class="score">4.33<em>推薦</em></span><span class="nm">人工智慧與深度學習</span><span class="meta">東海大學　·　進階　·　9 小時　·　收錄於 <b>P5、P6</b></span></li><li><span class="score">4.33<em>推薦</em></span><span class="nm">AIoT技術與應用</span><span class="meta">東海大學　·　進階　·　9 小時　·　收錄於 <b>P6</b></span></li><li><span class="score">4.33<em>推薦</em></span><span class="nm">深度學習的原理及實務上的應用</span><span class="meta">國立政治大學　·　進階　·　6 小時　·　收錄於 <b>P5、P7</b></span></li><li><span class="score">4.33<em>推薦</em></span><span class="nm">和AI做朋友：從0開始學AI</span><span class="meta">教育部AI人才培育計畫-中小學推廣教育計畫　·　基礎　·　6 小時　·　收錄於 <b>P1、P3、P9</b></span></li><li><span class="score">4.33<em>推薦</em></span><span class="nm">The Behavioral Sciences in the Age of AI</span><span class="meta">國立雲林科技大學　·　進階　·　8 小時　·　收錄於 <b>P2</b></span></li><li><span class="score">4.33<em>推薦</em></span><span class="nm">資料科學與教育資料探勘</span><span class="meta">東海大學　·　進階　·　6 小時　·　收錄於 <b>P8</b></span></li><li><span class="score">4.33<em>推薦</em></span><span class="nm">教育資料探勘(高師大)</span><span class="meta">國立高雄師範大學　·　基礎　·　6 小時　·　收錄於 <b>P8</b></span></li><li><span class="score">4.33<em>推薦</em></span><span class="nm">機器學習實作</span><span class="meta">國立中興大學　·　進階　·　6 小時　·　收錄於 <b>P4</b></span></li></ul>
 <p class="note">這 9 門是本次盤點評價最高的課程。依組合原則，
 只有 A+ 級得重複納入不同套裝，作為各主題軌的共用錨點；其餘課程一律僅歸屬單一套裝。
 界線取 4.33 而非「前 N 名」，是因為 4.0 分有 9 門並列，
